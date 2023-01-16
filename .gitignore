@@ -1,0 +1,12 @@
+node_modules
+build
+coverage
+package.json-e
+junit.xml
+yarn-error.log
+dist/**
+.env
+.DS_Store
+.vscode
+.idea
+

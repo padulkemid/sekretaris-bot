@@ -8,10 +8,6 @@ module.exports = {
   preset: 'ts-jest',
   testMatch: ['**/?(*.)(spec|test).tsx', '**/?(*.)(spec|test).ts'],
   moduleFileExtensions: ['ts', 'js', 'tsx', 'jsx', 'json', 'node'],
-  moduleNameMapper: {
-    '@src/(.*)': '<rootDir>/src/$1',
-    '@/(.*)': '<rootDir>/$1'
-  },
   globals: {
     'ts-jest': {
       diagnostics: false
@@ -19,8 +15,8 @@ module.exports = {
   },
   coverageThreshold: {
     global: {
-      branches: 75,
-      functions: 80,
+      branches: 90,
+      functions: 90,
       lines: 90,
       statements: 90
     }
@@ -28,7 +24,8 @@ module.exports = {
   collectCoverageFrom: [
     'src/**/*.{ts,js,tsx,jsx}',
     '!src/**/*.(interface|constant|constants|type|validator|enum).{ts,js,tsx,jsx}',
-    '!src/index.tsx',
+    '!src/index.ts',
+    '!src/server.ts',
     '!**/__mocks__/**',
     '!**/node_modules/**'
   ],

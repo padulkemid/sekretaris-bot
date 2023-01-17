@@ -14,4 +14,4 @@ RUN yarn && \
     yarn cache clean
 
 CMD node dist/index.js --unhandled-rejections=strict --max-old-space-size=200
-
+EXPOSE 8080

@@ -11,3 +11,8 @@
     DISCORD_BOT_TOKEN # Discord bot token
     ```
 - Run `yarn run start` to start the discord bot.
+
+## Contributing
+
+Please read [CONTRIBUTING](CONTRIBUTING.md) thoroughly and carefully, thank you!
+:tada:

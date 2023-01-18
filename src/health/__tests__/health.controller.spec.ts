@@ -1,8 +1,9 @@
 import fastify from 'fastify';
-import { Http } from '../../common/http.constant';
+
+import { Http } from '../../common/constants/http.constant';
+import { buildMockedPingResponse } from '../__mocks__/health.data';
 import healthController from '../health.controller';
 import healthService from '../health.service';
-import { buildMockedPingResponse } from '../__mocks__/health.data';
 
 jest.mock('../health.service');
 
@@ -12,6 +13,10 @@ describe('health.controller', () => {
   beforeAll(() => {
     server = fastify();
     server.register(healthController);
+  });
+
+  afterAll(() => {
+    jest.clearAllMocks();
   });
 
   describe('GET /ping', () => {

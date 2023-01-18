@@ -1,4 +1,5 @@
-import { Http } from '../common/http.constant';
+import { Http } from '../common/constants/http.constant';
+
 import healthService from './health.service';
 
 const ping = {

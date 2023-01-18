@@ -1,5 +1,6 @@
 import fastify from 'fastify';
-import Server from './common/server.constant';
+
+import { Server } from './common/constants/server.constant';
 import healthController from './health/health.controller';
 
 // `fastify` init

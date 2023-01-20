@@ -4,6 +4,7 @@ describe('logger.util', () => {
   describe('logger', () => {
     it('should log', () => {
       // Given
+      const spyLog = jest.spyOn(logger, 'info');
       const mockedInfo = 'log this!';
 
       // When
@@ -11,6 +12,7 @@ describe('logger.util', () => {
 
       // Then
       expect(logger).toBeDefined();
+      expect(spyLog).toHaveBeenCalled();
     });
   });
 });

@@ -26,7 +26,6 @@ module.exports = {
     '!src/**/*.(interface|constant|constants|type|validator|enum).{ts,js,tsx,jsx}',
     '!src/index.ts',
     '!src/server.ts',
-    '!src/discord/**',
     '!**/__mocks__/**',
     '!**/node_modules/**'
   ],

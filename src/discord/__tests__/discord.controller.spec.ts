@@ -1,15 +1,19 @@
 import { Events } from 'discord.js';
 
-import { client, startClient } from '../discord.controller';
+import discordController, { client } from '../discord.controller';
 import discordService from '../discord.service';
 
 jest.mock('../discord.service');
 jest.mock('discord.js', () => ({
   GatewayIntentBits: {
-    Guilds: 1
+    Guilds: 1,
+    GuildMessages: 512,
+    MessageContent: 32768,
+    GuildMembers: 2
   },
   Events: {
-    ClientReady: 'ready'
+    ClientReady: 'ready',
+    InteractionCreate: 'interactionCreate'
   },
   Client: jest.fn(() => ({
     on: jest.fn(),
@@ -25,13 +29,20 @@ describe('discord.controller', () => {
   describe('startClient', () => {
     it('should start client and then login', async () => {
       // When
-      await startClient();
+      await discordController.startClient();
 
       // Then
-      expect(client.on).toHaveBeenCalledWith(
+      expect(client.on).toHaveBeenNthCalledWith(
+        1,
         Events.ClientReady,
         discordService.setStatus
       );
+      expect(client.on).toHaveBeenNthCalledWith(
+        2,
+        Events.InteractionCreate,
+        discordService.setInteraction
+      );
+      expect(client.on).toHaveBeenCalledTimes(2);
       expect(client.login).toHaveBeenCalledWith(expect.any(String));
     });
   });

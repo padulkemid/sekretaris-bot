@@ -1,12 +1,15 @@
-import { ActivityType, Client, PresenceData } from 'discord.js';
+import { ActivityType, Client, Interaction, PresenceData } from 'discord.js';
 
+import commandService from '../command/command.service';
 import logger from '../common/utils/logger.util';
 
-const setStatus = (client: Client<true>): void => {
+import { ServerName } from './discord.enum';
+
+const setStatus = async (client: Client<true>): Promise<void> => {
   const presenceData = {
     activities: [
       {
-        name: 'JoinDong',
+        name: ServerName.JOIN_DONG,
         type: ActivityType.Watching
       }
     ],
@@ -14,11 +17,18 @@ const setStatus = (client: Client<true>): void => {
   } satisfies PresenceData;
 
   client.user.setPresence(presenceData);
-  logger.info(presenceData, 'Successfully set discord presence data!');
+  logger.info('Successfully set discord presence data!');
+};
+
+const setInteraction = async (interaction: Interaction): Promise<void> => {
+  if (!interaction.isChatInputCommand()) return;
+
+  await commandService.handleChatInputCommand(interaction);
 };
 
 const discordService = {
-  setStatus
+  setStatus,
+  setInteraction
 };
 
 export default discordService;

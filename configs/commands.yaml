@@ -1,0 +1,3 @@
+commands:
+  - name: ping
+    description: Checks if the bot replies pong!
